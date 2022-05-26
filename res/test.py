@@ -3,9 +3,7 @@ from res.utils import *
 pressed = {
     "mleft" : False,
     "mright" : False,
-    1073742053 : False, #right ctrl
-    1073742048 : False, #left ctrl 
-    122 : False,  #Z
+    "\x1a" : False, # ctrl + z
 }
 
 active_color = WHITE
@@ -32,9 +30,11 @@ while True:
             if event.button == 3:
                 pressed['mright'] = False
         if event.type == KEYDOWN:
-            pressed[event.key] = True
+            if not event.unicode == '':
+                pressed[event.unicode] = True
         if event.type == KEYUP:
-            pressed[event.key] = False
+            if not event.unicode == '':
+                pressed[event.unicode] = False
 
     if pressed["mleft"]:
         pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
@@ -42,10 +42,10 @@ while True:
     if pressed["mright"]:
         pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
 
-    if (pressed[1073742048] or pressed[1073742053]) and pressed[122]:
+    if pressed["\x1a"]:
         if PCANVAS != []:
             CANVAS = PCANVAS.pop()
-            pressed[122] = False
+            pressed["\x1a"] = False
 
     SCR.blit(CANVAS,(0,0))
 

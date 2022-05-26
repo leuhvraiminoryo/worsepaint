@@ -4,7 +4,7 @@ from pygame.locals import *
 
 global FPSCLOCK, SCR
 pygame.init()
-FPS = 250
+FPS = 120
 FPSCLOCK = pygame.time.Clock()
 WX = 1000
 WY = 625
