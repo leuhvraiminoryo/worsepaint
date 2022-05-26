@@ -15,7 +15,7 @@ def verifKeyPresses(pressed):
                 pressed['mright'] = False
 
 def terminate():
-    pygame.image.save(SCR,'pic.png')
+    pygame.image.save(CANVAS,'pic.png')
     pygame.quit()
     sys.exit()
 
