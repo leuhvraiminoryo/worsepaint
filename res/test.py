@@ -39,10 +39,16 @@ while True:
     try :
         if pressed["mleft"]:
             pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
+    except KeyError:
+        pass
 
+    try :
         if pressed["mright"]:
             pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
-
+    except KeyError:
+        pass
+        
+    try :
         if pressed["\x1a"]:
             if PCANVAS != []:
                 CANVAS = PCANVAS.pop()
