@@ -4,7 +4,7 @@ pressed = {}
 
 active_color = WHITE
 mouse_pos = (0,0)
-PCANVAS = []
+PCANVAS = [CANVAS.copy()]
 
 while True:
     SCR.fill(BLACK)
@@ -15,7 +15,11 @@ while True:
 
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
-            PCANVAS.append(CANVAS.copy())
+            try:
+                if not pygame.image.tostring(PCANVAS[-1],'RGB') == pygame.image.tostring(CANVAS,'RGB'):
+                    PCANVAS.append(CANVAS.copy())
+            except IndexError:
+                PCANVAS.append(CANVAS.copy())
             if event.button == 1:
                 pressed['mleft'] = True
             if event.button == 3:
