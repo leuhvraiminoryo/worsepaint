@@ -1,10 +1,6 @@
 from res.utils import *
 
-pressed = {
-    "mleft" : False,
-    "mright" : False,
-    "\x1a" : False, # ctrl + z
-}
+pressed = {}
 
 active_color = WHITE
 mouse_pos = (0,0)
@@ -36,16 +32,19 @@ while True:
             if not event.unicode == '':
                 pressed[event.unicode] = False
 
-    if pressed["mleft"]:
-        pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
+    try :
+        if pressed["mleft"]:
+            pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
 
-    if pressed["mright"]:
-        pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
+        if pressed["mright"]:
+            pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
 
-    if pressed["\x1a"]:
-        if PCANVAS != []:
-            CANVAS = PCANVAS.pop()
-            pressed["\x1a"] = False
+        if pressed["\x1a"]:
+            if PCANVAS != []:
+                CANVAS = PCANVAS.pop()
+                pressed["\x1a"] = False
+    except KeyError:
+        pass
 
     SCR.blit(CANVAS,(0,0))
 
