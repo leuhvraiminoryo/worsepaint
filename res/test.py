@@ -4,6 +4,7 @@ pressed = {}
 
 active_color = WHITE
 mouse_pos = (0,0)
+state = "writing"
 PCANVAS = [CANVAS.copy()]
 
 while True:
@@ -29,21 +30,30 @@ while True:
             if event.button == 3:
                 pressed['mright'] = False
         if event.type == KEYDOWN:
+            if event.key == 1073742048 or event.key == 1073742053:
+                state = "ctrl"
             if not event.unicode == '':
                 pressed[event.unicode] = True
         if event.type == KEYUP:
+            if event.key == 1073742048 or event.key == 1073742053:
+                state = "writing"
             if not event.unicode == '':
                 pressed[event.unicode] = False
 
     try :
         if pressed["mleft"]:
-            pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
+            if state == "writing":
+                pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
     except KeyError:
         pass
 
     try :
         if pressed["mright"]:
-            pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
+            if state == "writing":
+                pygame.draw.circle(CANVAS,BLACK,mouse_pos,10)
+            if state == "ctrl":
+                CANVAS.fill(BLACK)
+                PCANVAS = []
     except KeyError:
         pass
         
