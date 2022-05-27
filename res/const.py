@@ -10,7 +10,9 @@ WX = 1000
 WY = 625
 SCR = pygame.display.set_mode((WX, WY))
 SCR.fill((0,0,0))
-CANVAS = pygame.Surface((WX,WY))
+CX = 950
+CY = 600
+CANVAS = pygame.Surface((CX,CY))
 CANVAS.fill((0,0,0))
 pygame.display.set_caption("yeet")
 MUTE = False

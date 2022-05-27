@@ -65,7 +65,7 @@ while True:
     except KeyError:
         pass
 
-    SCR.blit(CANVAS,(0,0))
+    SCR.blit(CANVAS,((WX-CX)/2,(WY-CY)/2))
 
     pygame.display.update()
     FPSCLOCK.tick(FPS)

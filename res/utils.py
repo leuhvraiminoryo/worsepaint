@@ -26,3 +26,4 @@ def checkForQuit():
         if event.key == K_ESCAPE:
             terminate()
         pygame.event.post(event)
+
