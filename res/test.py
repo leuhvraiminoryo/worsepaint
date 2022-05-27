@@ -15,11 +15,10 @@ while True:
 
     for event in pygame.event.get():
         if event.type == MOUSEBUTTONDOWN:
-            try:
-                if not pygame.image.tostring(PCANVAS[-1],'RGB') == pygame.image.tostring(CANVAS,'RGB'):
-                    PCANVAS.append(CANVAS.copy())
-            except IndexError:
-                PCANVAS.append(CANVAS.copy())
+            PCANVAS.append(CANVAS.copy())
+            if len(PCANVAS)>1:
+                if pygame.image.tostring(PCANVAS[-1],'RGB') == pygame.image.tostring(PCANVAS[-2],'RGB'):
+                    PCANVAS.pop()
             if event.button == 1:
                 pressed['mleft'] = True
             if event.button == 3:
