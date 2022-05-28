@@ -43,7 +43,7 @@ while True:
     try :
         if pressed["mleft"]:
             if state == "writing":
-                pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=5)
+                pygame.draw.line(CANVAS,active_color,mousePosCorrection(last_mouse_pos),mousePosCorrection(mouse_pos),width=5)
     except KeyError:
         pass
 

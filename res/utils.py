@@ -13,3 +13,6 @@ def checkForQuit():
             terminate()
         pygame.event.post(event)
 
+def mousePosCorrection(pos):
+    return (pos[0] - (WX-CX)/2, pos[1] - (WY-CY)/2)
+
