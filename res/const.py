@@ -11,7 +11,7 @@ WY = 625
 SCR = pygame.display.set_mode((WX, WY))
 SCR.fill((0,0,0))
 CX = 950
-CY = 600
+CY = 575
 CANVAS = pygame.Surface((CX,CY))
 CANVAS.fill((0,0,0))
 pygame.display.set_caption("yeet")
@@ -23,4 +23,5 @@ GREY = (155,155,155)
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
+SPEGREEN = (150,230,100)
 GOLDEN = (255,215,0)
