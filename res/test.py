@@ -2,11 +2,12 @@ from res.utils import *
 
 pressed = {}
 
-active_color = WHITE
+active_color_id = 0
 mouse_pos = (0,0)
 state = "writing"
 pensize = 5
-PCANVAS = [CANVAS.copy()]
+PCANVAS = [CANVAS.copy()]   
+quick_colors_list = [WHITE,GREY,RED,GREEN,BLUE,GOLDEN]
 
 while True:
     SCR.fill(SPEGREEN)
@@ -27,6 +28,10 @@ while True:
                     PCANVAS.pop()
             if event.button == 1:
                 pressed['mleft'] = True
+                if state == "ctrl":
+                    active_color_id += 1
+                    if active_color_id == len(quick_colors_list):
+                        active_color_id = 0
             if event.button == 3:
                 pressed['mright'] = True
         if event.type == MOUSEBUTTONUP:
@@ -53,7 +58,8 @@ while True:
     try :
         if pressed["mleft"]:
             if state == "writing":
-                pygame.draw.line(CANVAS,active_color,last_mouse_pos,mouse_pos,width=pensize)
+                pygame.draw.line(CANVAS,quick_colors_list[active_color_id],last_mouse_pos,mouse_pos,width=pensize)
+                
     except KeyError:
         pass
 
